@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration=production --aot --base=/app-monografia/",
+    "build": "ng build --configuration=production --base-href=/app-monografia/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
