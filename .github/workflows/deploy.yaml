@@ -16,10 +16,11 @@ jobs:
         run: npm i
 
       - name: Bundle
-        run: npm run build
+        run: npm run build:prod
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: develop
-          folder: app-monografia/dist/browser
+          folder: dist/browser
+          token: ${{ secrets.GH_TOKEN }}
