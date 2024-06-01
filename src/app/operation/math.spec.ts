@@ -9,5 +9,5 @@ it('should return -1 when adding -2 and 1', () => {
 });
 
 it('should return 0 when adding 0 and 0', () => {
-  expect(sum(1, 0)).toEqual(0);
+  expect(sum(0, 0)).toEqual(0);
 });

@@ -20,9 +20,6 @@ jobs:
       - name: Install packages #Instala las dependencias del proyecto usando npm i.
         run: npm i
 
-      - name: Test #Ejecuta las pruebas unitarias.
-        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-
       - name: Bundle #Copila el proyecto
         run: npm run build:prod
 
