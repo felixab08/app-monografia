@@ -12,13 +12,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: List files for debugging
+        run: ls -la
+
       - name: Use Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
-
-      - name: List files for debugging
-        run: ls -la ./app-monografia
 
       - name: Install packages
         run: npm i
