@@ -17,9 +17,11 @@ jobs:
         with:
           node-version: 18
 
+      - name: List files for debugging
+        run: ls -la ./app-monografia
+
       - name: Install packages
         run: npm i
-        working-directory: ./app-monografia
 
       - name: Bundle
         run: npm run build:prod
