@@ -1,0 +1,37 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: List files for debugging
+        run: ls -la
+
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install packages
+        run: npm i
+
+      - name: Bundle
+        run: npm run build:prod
+
+      - name: Test
+        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: main
+          folder: dist/browser
+          token: ${{ secrets.GH_TOKEN }}
