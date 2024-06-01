@@ -26,7 +26,6 @@ jobs:
 
       - name: Bundle
         run: npm run build:prod
-        working-directory: ./app-monografia # Especifica el directorio de trabajo
 
       - name: Test
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
