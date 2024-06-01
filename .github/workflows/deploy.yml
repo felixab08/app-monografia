@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - develop
+      - main
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -19,6 +19,7 @@ jobs:
 
       - name: Install packages
         run: npm i
+        working-directory: ./app-monografia
 
       - name: Bundle
         run: npm run build:prod
@@ -29,6 +30,6 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: develop
+          branch: main
           folder: dist/browser
           token: ${{ secrets.GH_TOKEN }}
