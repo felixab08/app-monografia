@@ -22,14 +22,12 @@ jobs:
 
       - name: Install packages
         run: npm i
-        working-directory: ./app-monografia # Especifica el directorio de trabajo
 
       - name: Bundle
         run: npm run build:prod
 
       - name: Test
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-        working-directory: ./app-monografia # Especifica el directorio de trabajo
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
