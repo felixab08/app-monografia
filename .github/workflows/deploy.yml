@@ -1,37 +1,34 @@
-name: Build and Deploy
+name: Build and Deploy #Nombre de la configuracion
 
 on:
-  push:
+  push: # evento de activacion
     branches:
-      - develop
+      - develop # Rama con el cual va a trabajar
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #Plataforma donde se va trabajar
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: List files for debugging
-        run: ls -la
+        uses: actions/checkout@v4 #Clona el repositorio
 
       - name: Use Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4 #Configura el entorno de Node.js.
         with:
           node-version: 18
 
-      - name: Install packages
+      - name: Install packages #Instala las dependencias del proyecto usando npm i.
         run: npm i
 
-      - name: Test
+      - name: Test #Ejecuta las pruebas unitarias.
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
-      - name: Bundle
+      - name: Bundle #Copila el proyecto
         run: npm run build:prod
 
-      - name: Deploy
+      - name: Deploy #Despliega el proyecto a GitHub Pages.
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages # Despliega a la rama gh-pages
-          folder: dist/browser # Ajusta esta ruta si es necesario
-          token: ${{ secrets.GH_TOKEN }} # Usar el token integrado
+          folder: dist/browser # Ajustamos la ruta donde se genera los archivos copilados
+          token: ${{ secrets.GH_TOKEN }} # Usa el token integrado
