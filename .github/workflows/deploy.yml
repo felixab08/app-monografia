@@ -12,6 +12,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: List files for debugging
+        run: ls -la
+
       - name: Use Node
         uses: actions/setup-node@v4
         with:
@@ -20,15 +23,15 @@ jobs:
       - name: Install packages
         run: npm i
 
-      - name: Bundle
-        run: npm run build:prod
-
       - name: Test
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+
+      - name: Bundle
+        run: npm run build:prod
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: develop
-          folder: dist/browser
-          token: ${{ secrets.GH_TOKEN }}
+          branch: gh-pages # Despliega a la rama gh-pages
+          folder: dist/browser # Ajusta esta ruta si es necesario
+          token: ${{ secrets.GH_TOKEN }} # Usar el token integrado
