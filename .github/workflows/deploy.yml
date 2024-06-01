@@ -11,6 +11,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          repository: felixab08/app-monografia # Asegúrate de que el nombre del repositorio sea correcto
+          path: app-monografia # Clonar el repositorio en un subdirectorio específico
 
       - name: Use Node
         uses: actions/setup-node@v4
@@ -19,12 +22,15 @@ jobs:
 
       - name: Install packages
         run: npm i
+        working-directory: ./app-monografia # Especifica el directorio de trabajo
 
       - name: Bundle
         run: npm run build:prod
+        working-directory: ./app-monografia # Especifica el directorio de trabajo
 
       - name: Test
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+        working-directory: ./app-monografia # Especifica el directorio de trabajo
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
